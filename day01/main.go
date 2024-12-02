@@ -15,12 +15,7 @@ func check(e error) {
 	}
 }
 
-func part1() {
-	f, err := os.Open("part1.txt")
-	check(err)
-
-	defer f.Close()
-
+func part1(f *os.File) {
 	var col1, col2, diffs []int
 
 	scanner := bufio.NewScanner(f)
@@ -62,5 +57,10 @@ func part1() {
 }
 
 func main() {
-	part1()
+	f, err := os.Open("part1.txt")
+	check(err)
+
+	defer f.Close()
+
+	part1(f)
 }
