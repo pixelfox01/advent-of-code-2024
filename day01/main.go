@@ -15,25 +15,8 @@ func check(e error) {
 	}
 }
 
-func part1(f *os.File) {
-	var col1, col2, diffs []int
-
-	scanner := bufio.NewScanner(f)
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		fields := strings.Fields(line)
-
-		if len(fields) >= 2 {
-			num1, err := strconv.Atoi(fields[0])
-			check(err)
-			num2, err := strconv.Atoi(fields[1])
-			check(err)
-
-			col1 = append(col1, num1)
-			col2 = append(col2, num2)
-		}
-	}
+func part1(col1, col2 []int) {
+	var diffs []int
 
 	sort.Ints(col1)
 	sort.Ints(col2)
@@ -62,5 +45,24 @@ func main() {
 
 	defer f.Close()
 
-	part1(f)
+	var col1, col2 []int
+
+	scanner := bufio.NewScanner(f)
+
+	for scanner.Scan() {
+		line := scanner.Text()
+		fields := strings.Fields(line)
+
+		if len(fields) >= 2 {
+			num1, err := strconv.Atoi(fields[0])
+			check(err)
+			num2, err := strconv.Atoi(fields[1])
+			check(err)
+
+			col1 = append(col1, num1)
+			col2 = append(col2, num2)
+		}
+	}
+
+	part1(col1, col2)
 }
