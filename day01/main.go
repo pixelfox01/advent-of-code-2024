@@ -32,8 +32,8 @@ func part1(col1, col2 []int) {
 	}
 
 	sum := 0
-	for i := 0; i < len(diffs); i++ {
-		sum = sum + diffs[i]
+	for _, d := range diffs {
+		sum += d
 	}
 
 	fmt.Println("Part 1 answer:", sum)
@@ -84,5 +84,6 @@ func main() {
 		}
 	}
 
+	part1(col1, col2)
 	part2(col1, col2)
 }
