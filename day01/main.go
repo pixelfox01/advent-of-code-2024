@@ -39,6 +39,26 @@ func part1(col1, col2 []int) {
 	fmt.Println("Part 1 answer:", sum)
 }
 
+func part2(col1, col2 []int) {
+	counts := make(map[int]int)
+	var similarities []int
+
+	for _, num := range col2 {
+		counts[num] = counts[num] + 1
+	}
+
+	for _, num := range col1 {
+		similarities = append(similarities, num*counts[num])
+	}
+
+	sum := 0
+	for _, s := range similarities {
+		sum += s
+	}
+
+	fmt.Println("Part 2 answer:", sum)
+}
+
 func main() {
 	f, err := os.Open("part1.txt")
 	check(err)
@@ -64,5 +84,5 @@ func main() {
 		}
 	}
 
-	part1(col1, col2)
+	part2(col1, col2)
 }
