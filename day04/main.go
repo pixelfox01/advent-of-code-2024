@@ -29,7 +29,28 @@ func main() {
 	}
 
 	Ans1 := part1(lines)
-	fmt.Println(Ans1)
+	Ans2 := part2(lines)
+	fmt.Println("Part1:", Ans1)
+	fmt.Println("Part2:", Ans2)
+}
+
+func part2(lines []string) int {
+	answer := 0
+	for i := range lines {
+		for j := range lines[i] {
+			if string(lines[i][j]) == "A" {
+				if i-1 >= 0 && i+1 < len(lines) && j-1 >= 0 && j+1 < len(lines[i]) {
+					diag1 := string(fmt.Sprintf("%s%s%s", string(lines[i-1][j-1]), string(lines[i][j]), string(lines[i+1][j+1])))
+					fmt.Println(diag1)
+					diag2 := string(fmt.Sprintf("%s%s%s", string(lines[i-1][j+1]), string(lines[i][j]), string(lines[i+1][j-1])))
+					if (diag1 == "MAS" || diag1 == "SAM") && (diag2 == "MAS" || diag2 == "SAM") {
+						answer++
+					}
+				}
+			}
+		}
+	}
+	return answer
 }
 
 func part1(lines []string) int {
