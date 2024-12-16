@@ -27,3 +27,4 @@ go.work.sum
 # Ignore input files
 part1.txt
 part2.txt
+input.txt
